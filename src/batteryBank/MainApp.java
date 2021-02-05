@@ -1,22 +1,15 @@
 package batteryBank;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import batteryBankDAOs.BatteryDAO;
-import items.Battery;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import views.MainView;
-import views.TestView1;
-import views.ViewBase;
 
 public class MainApp extends Application
 {
   public static MainView mainView = new MainView();
+  public static Stage mainStage;
+  public static Scene currentScene;
   
   public void start(Stage primaryStage) throws Exception
   {
@@ -30,13 +23,6 @@ public class MainApp extends Application
     primaryStage.show();
   }
   
-  public static Stage mainStage;
-  public static Map<SceneName, Scene> scenes = new HashMap<>();
-  
-  public static Map<SceneName, Scene> getScenes()
-  {
-    return scenes;
-  }
   
   public static void main(String[] args)
   {

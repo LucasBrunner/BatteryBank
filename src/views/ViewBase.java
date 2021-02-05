@@ -12,14 +12,7 @@ import javafx.stage.Stage;
 
 public class ViewBase
 {
-  protected static Stage stage;
-  
   protected Pane body = null;
-  
-  static
-  {
-    stage = MainApp.mainStage;
-  }
   
   public ViewBase(Pane _body) 
   {

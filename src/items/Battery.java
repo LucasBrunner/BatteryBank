@@ -20,6 +20,18 @@ public class Battery
   
   public Battery() {}
   
+  public Battery(String _name, String _connector, double _voltage, int _capacity, int _cRating, LocalDate _dateOfAquirement, int _cycleCount)
+  {
+    name = _name;
+    connector = _connector;
+    voltage = _voltage;
+    capacity = _capacity;
+    cRating = _cRating;
+    dateOfAquirement = _dateOfAquirement;
+    
+    cycleCount = _cycleCount;
+  }
+  
   public Battery(int _ID, String _name, String _connector, double _voltage, int _capacity, int _cRating, LocalDate _dateOfAquirement, int _checkups, int _extraCycles, int _cycleCount)
   {
     ID = _ID;
