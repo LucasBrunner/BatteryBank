@@ -7,7 +7,6 @@ import views.MainView;
 
 public class MainApp extends Application
 {
-  public static MainView mainView = new MainView();
   public static Stage mainStage;
   public static Scene currentScene;
   
@@ -15,14 +14,13 @@ public class MainApp extends Application
   {
     
     mainStage = primaryStage;
-    primaryStage.setWidth(1200);
-    primaryStage.setHeight(1000);
+    mainStage.setWidth(1200);
+    mainStage.setHeight(1000);
     
-    primaryStage.setScene(mainView.getScene());
-
-    primaryStage.show();
+    mainStage.setScene(new MainView().getScene());
+    
+    mainStage.show();
   }
-  
   
   public static void main(String[] args)
   {

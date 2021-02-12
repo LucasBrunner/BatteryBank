@@ -1,12 +1,12 @@
-package batteryBankDAOs;
+package battery;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import batteryBank.DBConnection;
-import items.Battery;
 
 public class BatteryDAO
 {
@@ -15,6 +15,33 @@ public class BatteryDAO
   static
   {
     connection = DBConnection.getConnection();
+  }
+  
+  public static boolean getBatteryNames(ArrayList<SimpleBattery> _out)
+  {
+    boolean output = false;
+    
+    String skeleton = "Select id, name FROM battery";
+    PreparedStatement statement = null;
+    ResultSet results = null;
+    
+    try
+    {
+      statement = connection.prepareStatement(skeleton);
+      results = statement.executeQuery();
+      
+      while (results.next())
+      {
+        _out.add(new SimpleBattery(results.getInt(1), results.getString(2)));
+      }
+      output = true;
+      
+    } catch (Exception e)
+    {
+      // TODO: handle exception
+    }
+    
+    return output;
   }
   
   public static boolean getBattery(int _ID, Battery _out)
@@ -31,17 +58,18 @@ public class BatteryDAO
       statement.setInt(1, _ID);
       results = statement.executeQuery();
       
-      results.next();
-      
-      _out.ID = results.getInt(1);
-      _out.name = results.getString(2);
-      _out.connector = results.getString(3);
-      _out.voltage = results.getDouble(4);
-      _out.capacity = results.getInt(5);
-      _out.cRating = results.getInt(6);
-      _out.dateOfAquirement = results.getDate(7).toLocalDate();
-      _out.checkups = results.getInt(8);
-      _out.setCompositeCycles(results.getInt(9));
+      while (results.next())
+      {
+        _out.ID = results.getInt(1);
+        _out.name = results.getString(2);
+        _out.connector = results.getString(3);
+        _out.voltage = results.getDouble(4);
+        _out.capacity = results.getInt(5);
+        _out.cRating = results.getInt(6);
+        _out.dateOfAquirement = results.getDate(7).toLocalDate();
+        _out.checkups = results.getInt(8);
+        _out.setCompositeCycles(results.getInt(9));
+      }
       
       statement = connection.prepareStatement(skeleton2);
       statement.setInt(1, _ID);

@@ -1,18 +1,20 @@
-package views.addViews;
+package battery;
 
 import java.time.LocalDate;
 
-import batteryBankDAOs.BatteryDAO;
+import batteryBank.DBConnection;
+import batteryBank.MainApp;
 import batteryBankDAOs.ConnectorDAO;
-import items.Battery;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import views.FieldChecks;
 import views.ItemViewBase;
+import views.MainView;
 
 public class AddBattery extends ItemViewBase
 {
@@ -31,6 +33,14 @@ public class AddBattery extends ItemViewBase
     Text battCRating = new Text("C Rating:");
     Text battDOA = new Text("Date Acquired:");
     Text battCycles = new Text("Current Cycles:");
+    
+    battName.setTextAlignment(TextAlignment.RIGHT);
+    battConnector.setTextAlignment(TextAlignment.RIGHT);
+    battVoltage.setTextAlignment(TextAlignment.RIGHT);
+    battCapacity.setTextAlignment(TextAlignment.RIGHT);
+    battCRating.setTextAlignment(TextAlignment.RIGHT);
+    battDOA.setTextAlignment(TextAlignment.RIGHT);
+    battCycles.setTextAlignment(TextAlignment.RIGHT);
     
     content.add(battName, 0, 0);
     content.add(battConnector, 0, 1);
@@ -85,6 +95,11 @@ public class AddBattery extends ItemViewBase
     Button submitBattery = new Button("Add Battery");
     submitBattery.setOnMousePressed((event) ->
     {
+      FieldChecks.checkDoubleValid(voltageField, content, voltageError, 2, 2);
+      FieldChecks.checkIntValid(capacityField, content, capacityError, 2, 3);
+      FieldChecks.checkIntValid(cRatingField, content, cRatingError, 2, 4);
+      FieldChecks.checkDateValid(dOAField, content, dOAError, 2, 5);
+      FieldChecks.checkIntValid(extraCyclesField, content, extraCyclesError, 2, 6);
       try
       {
         Battery b = new Battery(
@@ -97,12 +112,12 @@ public class AddBattery extends ItemViewBase
             , extraCyclesField.getText().length() > 0 ? Integer.parseInt(extraCyclesField.getText()) : 0
             );
         BatteryDAO.insertBattery(b);
+        MainApp.mainStage.setScene(new BatteryView(DBConnection.getLastInsertID()).getScene());
       } catch (Exception e)
       {
         e.printStackTrace();
       }
     });
-    
     content.add(submitBattery, 0, 7);
   }
 }

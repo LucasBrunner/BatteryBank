@@ -1,4 +1,4 @@
-package items;
+package battery;
 
 import java.time.LocalDate;
 
