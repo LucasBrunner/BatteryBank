@@ -84,7 +84,13 @@ public class MainView extends ViewBase
       int sb = batteryList.getSelectionModel().getSelectedIndex();
       if (selectedBatt == sb)
       {
-        MainApp.mainStage.setScene(new BatteryView(batteryListIDs.get(sb)).getScene());
+        try
+        {
+          MainApp.mainStage.setScene(new BatteryView(batteryListIDs.get(sb)).getScene());
+        } catch (Exception e)
+        {
+          // TODO: handle exception
+        }
       } else {
         selectedBatt = sb;
       }
