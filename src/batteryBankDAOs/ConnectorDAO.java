@@ -77,8 +77,6 @@ public class ConnectorDAO
       statement.setString(1, _newName);
       statement.setString(2, _name);
       
-      int rows = statement.executeUpdate();
-      
     } catch (Exception e)
     {
       e.printStackTrace();
@@ -105,8 +103,6 @@ public class ConnectorDAO
       statement = connection.prepareStatement(skeletion1);
       statement.setString(1, _name);
       
-      int rows = statement.executeUpdate();
-      
     } catch (Exception e)
     {
       e.printStackTrace();
@@ -132,8 +128,6 @@ public class ConnectorDAO
     {
       statement = connection.prepareStatement(skeletion1);
       statement.setString(1, _name);
-      
-      int rows = statement.executeUpdate();
       
     } catch (Exception e)
     {
