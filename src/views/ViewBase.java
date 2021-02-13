@@ -1,6 +1,5 @@
 package views;
 
-import batteryBank.MainApp;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,8 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
+/**
+ * The base for all screens in the app.
+ * 
+ * @author Lucas Brunner
+ */
 public class ViewBase
 {
   protected Pane body = null;
@@ -19,6 +22,10 @@ public class ViewBase
     body = _body;
   }
   
+  /**
+   * Creates a up to date version of this class's {@link Scene}.
+   * @return The {@link Scene} created.
+   */
   public Scene getScene()
   {
     BorderPane root = new BorderPane();

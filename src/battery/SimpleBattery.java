@@ -1,5 +1,10 @@
 package battery;
 
+/**
+ * A simplified version of the {@link Battery} class. Only contains name and ID variables.
+ * 
+ * @author Lucas Brunner
+ */
 public class SimpleBattery
 {
   public int ID;

@@ -6,16 +6,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The Data Access Object for the database.
+ * 
+ * @author Lucas Brunner
+ */
 public class DBConnection
 {
   private static Connection con = null;
   
-  // Initialize database connection
   static
   {
     String mySqlUrl = "jdbc:mysql://localhost:3306/batterybank";
-    String user = "sampleUser";
-    String pass = "1234567890";
+    String user = "batterybank_manager";
+    String pass = "lipomaster";
     
     try
     {
@@ -29,12 +33,16 @@ public class DBConnection
     }
   }
   
-  // Get database connection
   public static Connection getConnection()
   {
     return con;
   }
   
+  /**
+   * Gets the last auto_increment value to be used by the database.
+   * 
+   * @return The last auto_increment value to be used by the database. 
+   */
   public static int getLastInsertID()
   {
     PreparedStatement statement = null;
@@ -51,7 +59,6 @@ public class DBConnection
     {
       // TODO: handle exception
     }
-    System.out.println(output);
     return output;
   }
 }

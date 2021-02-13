@@ -17,6 +17,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * The home screen of the app.
+ * 
+ * @author Lucas Brunner
+ */
 public class MainView extends ViewBase
 {
   private int selectedBatt = -1;
@@ -79,7 +84,7 @@ public class MainView extends ViewBase
       int sb = batteryList.getSelectionModel().getSelectedIndex();
       if (selectedBatt == sb)
       {
-        MainApp.mainStage.setScene(new BatteryView(sb).getScene());
+        MainApp.mainStage.setScene(new BatteryView(batteryListIDs.get(sb)).getScene());
       } else {
         selectedBatt = sb;
       }
