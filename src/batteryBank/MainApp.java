@@ -24,10 +24,8 @@ public class MainApp extends Application
   
   public static void main(String[] args)
   {
-    /*
-     * Battery b = new Battery(); b.name = "test1"; BatteryDAO.insertBattery(b);
-     */
     launch(args);
+    DBConnection.closeConnection();
   }
   
   public enum SceneName

@@ -12,12 +12,12 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/three/Documents/SeminoleState/BusinessProgramming/mysql-connector-java-8.0.15/mysql-connector-java-8.0.15.jar">
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX11">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX11">
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaSQL11">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

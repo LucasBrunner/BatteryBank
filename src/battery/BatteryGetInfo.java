@@ -65,7 +65,7 @@ public class BatteryGetInfo
     Text battName = new Text("Name:");
     Text battConnector = new Text("Connector:");
     Text battVoltage = new Text("Voltage:");
-    Text battCapacity = new Text("Capacity:");
+    Text battCapacity = new Text("Capacity (mAh):");
     Text battCRating = new Text("C Rating:");
     Text battDOA = new Text("Date Acquired:");
     

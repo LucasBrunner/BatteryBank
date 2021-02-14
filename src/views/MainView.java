@@ -52,11 +52,14 @@ public class MainView extends ViewBase
     newCharger.prefWidthProperty().bind(addButtons.widthProperty());
     newCharger.setAlignment(Pos.BASELINE_LEFT);
     
-    addButtons.getChildren().addAll(newBattery, newEquipment, newCharger);
+    addButtons.getChildren().addAll(newBattery); //, newEquipment, newCharger);
     
     content.getChildren().add(addButtons);
     
     // Show batteries
+    VBox batteries = new VBox();
+    batteries.setSpacing(10);
+    
     ArrayList<SimpleBattery> batteryNames = new ArrayList<>();
     ListView<String> batteryList = new ListView<>();
     Dictionary<Integer, Integer> batteryListIDs = new Hashtable<>();
@@ -64,7 +67,7 @@ public class MainView extends ViewBase
     BatteryDAO.getBatteryNames(batteryNames);
     for (int i = 0; i < batteryNames.size(); i++)
     {
-      batteryList.getItems().add(i, batteryNames.get(i).name);
+      batteryList.getItems().add(i, batteryNames.get(i).getViewName());
       batteryListIDs.put(i, batteryNames.get(i).ID);
     }
     
@@ -82,21 +85,27 @@ public class MainView extends ViewBase
     batteryList.setOnMouseClicked((event) ->
     {
       int sb = batteryList.getSelectionModel().getSelectedIndex();
-      if (selectedBatt == sb)
+      if (sb == selectedBatt)
       {
-        try
-        {
-          MainApp.mainStage.setScene(new BatteryView(batteryListIDs.get(sb)).getScene());
-        } catch (Exception e)
-        {
-          // TODO: handle exception
-        }
+        batteryList.getSelectionModel().clearSelection();
+        selectedBatt = -1;
       } else {
         selectedBatt = sb;
       }
     });
+    batteries.getChildren().add(batteryList);
     
-    content.getChildren().add(batteryList);
+    Button viewBattery = new Button("View Selected");
+    viewBattery.setOnMouseClicked((event) ->
+    {
+      if (selectedBatt != -1)
+      {
+        MainApp.mainStage.setScene(new BatteryView(batteryListIDs.get(selectedBatt)).getScene());
+      }
+    });
+    batteries.getChildren().add(viewBattery);
+    
+    content.getChildren().add(batteries);
   }
 }
 

@@ -38,6 +38,18 @@ public class DBConnection
     return con;
   }
   
+  public static void closeConnection()
+  {
+    try
+    {
+      con.close();
+    } catch (SQLException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+  
   /**
    * Gets the last auto_increment value to be used by the database.
    * 

@@ -24,6 +24,16 @@ public class Battery
   public int checkups = 0;  
   public int cycleCount;
   
+  public String getViewName()
+  {
+    String output = name;
+    if (name.isEmpty() || name == null || name.trim().isEmpty())
+    {
+      output = "Battery " + ID;
+    }
+    return output;
+  }
+  
   public Battery() {}
   
   public Battery(String _name, String _connector, double _voltage, int _capacity, int _cRating, LocalDate _dateOfAquirement, int _cycleCount)
@@ -135,7 +145,7 @@ public class Battery
     Text battName = new Text("Name:");
     Text battConnector = new Text("Connector:");
     Text battVoltage = new Text("Voltage:");
-    Text battCapacity = new Text("Capacity:");
+    Text battCapacity = new Text("Capacity (mAh):");
     Text battCRating = new Text("C Rating:");
     Text battDOA = new Text("Date Acquired:");
     Text battCycles = new Text("Current Cycles:");
@@ -156,18 +166,18 @@ public class Battery
     content.add(battCapacity, 0, 3);
     content.add(battCRating, 0, 4);
     content.add(battDOA, 0, 5);
-    content.add(battCycles, 0, 6);
-    content.add(battCheckups, 0, 7);
+    // content.add(battCycles, 0, 6);
+    // content.add(battCheckups, 0, 7);
     
     // Values
-    Text battNameV = new Text(name != null ? name : "Battery " + ID);
+    Text battNameV = new Text(getViewName());
     Text battConnectorV = new Text(connector != null ? connector : "-");
     Text battVoltageV = new Text(voltage != 0 ? String.valueOf(voltage) : "-");
     Text battCapacityV = new Text(capacity != 0 ? String.valueOf(capacity) : "-");
     Text battCRatingV = new Text(cRating != 0 ? String.valueOf(cRating) : "-");
     Text battDOAV = new Text(dateOfAquirement != null ? dateOfAquirement.toString() : "");
-    Text battCyclesV = new Text(String.valueOf(cycleCount));
-    Text battCheckupsV = new Text(String.valueOf(checkups));
+    // Text battCyclesV = new Text(String.valueOf(cycleCount));
+    // Text battCheckupsV = new Text(String.valueOf(checkups));
 
     content.add(battNameV, 1, 0);
     content.add(battConnectorV, 1, 1);
@@ -175,8 +185,8 @@ public class Battery
     content.add(battCapacityV, 1, 3);
     content.add(battCRatingV, 1, 4);
     content.add(battDOAV, 1, 5);
-    content.add(battCyclesV, 1, 6);
-    content.add(battCheckupsV, 1, 7);
+    // content.add(battCyclesV, 1, 6);
+    // content.add(battCheckupsV, 1, 7);
     
     return content;
   }
